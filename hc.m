@@ -1,43 +1,50 @@
 freeze;
 
+Attach ("shurProduct.m"); import "shurProduct.m" : shur;
+Attach ("generateCyclicCode.m"); import "generateCyclicCode.m" : generateCyclicCode;
+Attach ("CyclomicCoset.m"); import "CyclomicCoset.m" : generateCycCoset;
+import "CyclomicCoset.m" : unionCycCosets;
+
+// define a inner function.. just for try
 function deneme(a)
-
-
 a:= 3;
 a;
-
-
 return a * 5 ;
-
 end function;
+// end of function
 
-
-// main function
+// start of main function
 function hc23(q, n)
-q2 := "\nbu sevdalar bosuna ley bu sevdalar bosuna\n";
-q2;
-startt := "\n*************** START OF FUNCTION ***************";
-startt;
+printf("\nbu sevdalar bosuna ley bu sevdalar bosuna\n");
+printf("\n*************** START OF FUNCTION ***************");
 
+U1 := generateCycCoset(q,n,7);
+U2 := generateCycCoset(q,n,10);
+U3 := generateCycCoset(q,n,9);
+U1 := unionCycCosets(U1,U2,n);
+U1 := unionCycCosets(U1,U3,n);
 
-//Attach ("shurProduct.m");
-import "shurProduct.m" : aaba;
-aaba(q, n);
+U1;
 
-//c := deneme(5);
-//c;
+/*
+useShur := false;
+
+if useShur then
+  shur(q, n);
+else
+  generateCyclicCode(q, n);
+end if;
+
+*/
 
 
 F := GF(q);
-
-
 //SetOutputFile("out.txt");
 
 //printf("deneme %o", n);
-printf("Cn, Ck, Cd, Dn, Dk, Dd, D|n, D|k, D|d, C*Dn, C*Dk, C*Dd, (C*D)|n, (C*D)|k, (C*D)|d, privacy, rate\n");
+printf("Cn, Ck, Cd, Dn, Dk, Dd, D|n, D|k, D|d, C*Dn, C*Dk, C*Dd, (C*D)|n, (C*D)|k, (C*D)|d,
+    privacy, rate\n");
 
-a := "fasfads";
-//a;
 
 /*
 
@@ -73,7 +80,6 @@ end for;
 
 //UnsetOutputFile();
 
-exitt := "\n\n*************** END OF FUNCTION *****************";
-exitt;
+printf("\n\n*************** END OF FUNCTION *****************");
 return 23;
 end function;

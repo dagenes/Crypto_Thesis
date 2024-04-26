@@ -1,8 +1,8 @@
 
 freeze;
 
-// main function
-function aaba(q, n)
+// shur product
+function shur(q, n)
 
 startt := "\n SUB FUNCTION ";
 startt;
@@ -39,6 +39,8 @@ else
 end if;
 
 
+max := 0;
+
 for f in T do
 
   if i eq 1 then
@@ -51,8 +53,12 @@ for f in T do
   end if;
 
   C:=CyclicCode(n,g mod (x^n-1));
-  if Dimension(C) eq 7 then
+  kc:=Dimension(C);
 
+  if kc eq 8 then
+    g;
+    T;
+    printf ("\n\n");
   for f2 in T do
 
     if i eq 1 then
@@ -67,19 +73,22 @@ for f in T do
 
     D:=CyclicCode(n,g2 mod (x^n-1));
 
-    kc:=Dimension(C);
+
     kd:=Dimension(D);
-    //printf "%o %o\n", kc, kd ;
-    if Dimension(D) eq 42 then
+
+    if kd eq 29 then
 
   //  if Dimension(C) ne n and Dimension(C) ne 0 and Dimension(D) ne n and Dimension(D) ne 0 then
       L:= { h1*h2 : h1 in Basis(C), h2 in Basis(D) };
-      Schur:= sub<V | L>;
+      Shur:= sub<V | L>;
 
-      a := Dimension(Schur);
+      a := Dimension(Shur);
 
-      if a ne n and a ne n-1 then
-        printf "%o %o %o\n", kc, kd, a ;
+      if a ne n and a ne n-1 and a ne n-2 and a ne n-3 then
+//        if a ge max then
+//          max := a;
+          printf "%o %o %o\n", kc, kd, a ;
+//        end if;
       end if;
       //g;
       //k;
